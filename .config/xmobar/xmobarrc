@@ -1,0 +1,76 @@
+Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
+       , additionalFonts = ["xft:Font Awesome 5 Free Solid:pixelsize=17"]
+       , borderColor = "#2D2A2E"
+       , border = BottomB
+       , bgColor = "#2D2A2E"
+       , fgColor = "#FAFCFA"
+       , alpha = 225
+    --    , position = Top
+	   , position = Static { xpos = 5, ypos = 5, width = 1910, height = 25 }
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [
+                    Run MultiCpu    [ "--template" 	, "<fn=1>\xf2db</fn>  <total>%"
+                             		, "--Low"      	, "30"         
+                             		, "--High"     	, "85"         
+                             		, "--low"      	, "#A9DC76"
+                             		, "--normal"   	, "#fe8019"
+                             		, "--high"     	, "#fb4934"
+                             		] 10
+
+                    
+					, Run Memory    [ "--template" 	, "<fn=1>\xf538</fn>  <usedratio>%"
+									, "--Low"      	, "40"        
+									, "--High"     	, "90"        
+									, "--low"      	, "#A9DC76"
+									, "--normal"   	, "#fe8019"
+									, "--high"     	, "#fb4934"
+									] 10
+					
+					, Run CoreTemp  [ "--template" 	, "<fn=1>\xf2cb</fn>  <core0>°C"
+									, "--Low"      	, "70"        
+									, "--High"     	, "80"        
+									, "--low"      	, "#A9DC76"
+									, "--normal"   	, "#fe8019"
+									, "--high"     	, "#fb4934"
+									] 50
+
+					, Run Battery   [ "--template" 	, "<fn=1>\xf1e6</fn>  <acstatus>"
+									, "--Low"      	, "30"        
+									, "--High"     	, "60"        
+									, "--low"      	, "#fb4934"
+									, "--normal"   	, "#fe8019"
+									, "--high"     	, "#A9DC76"
+
+									, "--" 			, "-o"	, "<left>%"
+													, "-O"	, "<fc=#78DCE8>Charging (<left>%)</fc>"
+													, "-i"	, "<fc=#A9DC76>Charged (<left>%)</fc>"
+									] 50
+										
+					--, Run Com "/bin/zsh" ["-c", "echo `xbacklight -get | grep -oE '^.[0-9]{0,3}'`%"]  "mybright" 10
+
+					--, Run Com "/bin/zsh" ["-c", "echo `amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1\`%"]  "myvolume" 10
+
+					--, Run Com "/home/anirudh/.local/bin/pacupdate.sh" [] "pacupdate" 3600
+
+					--, Run Com "/home/anirudh/.local/bin/wireless.sh" [] "wifi" 30
+
+					--, Run Com "/home/anirudh/.local/bin/volume.sh" [] "volume" 10
+
+					, Run Com "uname" ["-n"] "" 3600
+	                    
+					, Run Date "<fn=1>\xf017</fn>  %a %b %_d  %Y   %H:%M:%S" "date" 10
+
+					--, Run StdinReader
+					]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "  <fc=#AB9DF2><action=`alacritty -e htop`>%multicpu%  %coretemp%</action></fc>  |  <fc=#FF6188><action=`alacritty -e htop`>%memory%</action></fc>  |  <fc=#78DCE8>%battery%</fc>  |  }\
+	   				\{  |  <fc=#FC9867>%date%</fc>  |  <fc=#FBF1C7><action=/home/anirudh/Downloads/xmenu/xmenu.sh>%uname%</action></fc> "}
