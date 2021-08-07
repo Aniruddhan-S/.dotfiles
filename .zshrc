@@ -110,6 +110,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias rm="rm -i"
 alias mv="mv -i"
+alias vim="nvim"
 alias speedtest="speedtest --bytes"
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 
