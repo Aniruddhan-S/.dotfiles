@@ -1,6 +1,6 @@
 " ------------------------------ Plugins ----------------------------------------
 
-call vundle#begin('/home/anirudh/.vim/plugged')
+call vundle#begin('/home/anirudh/.config/nvim/plugged')
 
 " Lightline
 Plugin 'itchyny/lightline.vim'
@@ -19,6 +19,9 @@ Plugin 'airblade/vim-gitgutter'
 
 " Themes
 Plugin 'sainnhe/sonokai'
+
+" Treesitter
+Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 
 call vundle#end()
 
@@ -41,6 +44,9 @@ set autoindent
 set smartindent
 set updatetime=100
 set noshowmode
+set nohlsearch
+set scrolloff=8
+set nocompatible
 
 filetype plugin indent on
 syntax enable
@@ -97,6 +103,27 @@ endfu
 
 set termguicolors
 colorscheme sonokai
+
+
+
+" ------------------------------ Treesitter settings ----------------------------
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    custom_captures = {
+      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+      ["foo.bar"] = "Identifier",
+    },
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
 
 
 
