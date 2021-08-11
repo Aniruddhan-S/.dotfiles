@@ -53,24 +53,16 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
 													, "-O"	, "<fc=#78DCE8>Charging (<left>%)</fc>"
 													, "-i"	, "<fc=#A9DC76>Charged (<left>%)</fc>"
 									] 50
+
+					, Run Wireless "wlp2s0" [ "-t", "<fn=1>\xf1eb</fn>  <essid>" ] 10
 										
-					--, Run Com "/bin/zsh" ["-c", "echo `xbacklight -get | grep -oE '^.[0-9]{0,3}'`%"]  "mybright" 10
-
-					--, Run Com "/bin/zsh" ["-c", "echo `amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1\`%"]  "myvolume" 10
-
-					--, Run Com "/home/anirudh/.local/bin/pacupdate.sh" [] "pacupdate" 3600
-
-					--, Run Com "/home/anirudh/.local/bin/wireless.sh" [] "wifi" 30
-
-					--, Run Com "/home/anirudh/.local/bin/volume.sh" [] "volume" 10
-
 					, Run Com "uname" ["-n"] "" 3600
 	                    
 					, Run Date "<fn=1>\xf017</fn>  %a %b %_d  %Y   %H:%M:%S" "date" 10
 
-					--, Run StdinReader
+					, Run UnsafeStdinReader
 					]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "  <fc=#AB9DF2><action=`alacritty -e htop`>%multicpu%  %coretemp%</action></fc>  |  <fc=#FF6188><action=`alacritty -e htop`>%memory%</action></fc>  |  <fc=#78DCE8>%battery%</fc>  |  }\
-	   				\{  |  <fc=#FC9867>%date%</fc>  |  <fc=#FBF1C7><action=/home/anirudh/Downloads/xmenu/xmenu.sh>%uname%</action></fc> "}
+       , template = "  %UnsafeStdinReader%  }{|  <fc=#AB9DF2><action=`alacritty -e htop`>%multicpu%  %coretemp%</action></fc>  |  <fc=#FF6188><action=`alacritty -e htop`>%memory%</action></fc>  |  <fc=#78DCE8>%battery%</fc>  |\
+	   				\  <fc=#FFD866>%wlp2s0wi%</fc>  |  <fc=#FC9867>%date%</fc>  |  <fc=#FBF1C7><action=/home/anirudh/Downloads/xmenu/xmenu.sh>%uname%</action></fc> "}
