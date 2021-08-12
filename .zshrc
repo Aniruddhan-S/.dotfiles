@@ -113,6 +113,7 @@ alias mv="mv -i"
 alias vim="nvim"
 alias speedtest="speedtest --bytes"
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+alias pac='pacman -Qqe'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
