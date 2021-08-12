@@ -1,5 +1,5 @@
 Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
-       , additionalFonts = ["xft:Font Awesome 5 Free Solid:pixelsize=17"]
+       , additionalFonts = [ "xft:Font Awesome 5 Free Solid:pixelsize=17"]
        , borderColor = "#2D2A2E"
        , border = BottomB
        , bgColor = "#2D2A2E"
@@ -54,15 +54,20 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
 													, "-i"	, "<fc=#A9DC76>Charged (<left>%)</fc>"
 									] 50
 
+					, Run DiskU 	[("/", "<fn=1>\xf0a0</fn>  <used> / <size>")] 
+									[ "--Low"		, "30"
+									, "--High"		, "50"
+									] 60
+
 					, Run Wireless "wlp2s0" [ "-t", "<fn=1>\xf1eb</fn>  <essid>" ] 10
 										
 					, Run Com "uname" ["-n"] "" 3600
 	                    
-					, Run Date "<fn=1>\xf017</fn>  %a %b %_d  %Y   %H:%M:%S" "date" 10
+					, Run Date "<fn=1>\xf017</fn>  %a %b %_d %Y  %H:%M:%S" "date" 10
 
 					, Run UnsafeStdinReader
 					]
        , sepChar = "%"
        , alignSep = "}{"
        , template = "  %UnsafeStdinReader%  }{|  <fc=#AB9DF2><action=`alacritty -e htop`>%multicpu%  %coretemp%</action></fc>  |  <fc=#FF6188><action=`alacritty -e htop`>%memory%</action></fc>  |  <fc=#78DCE8>%battery%</fc>  |\
-	   				\  <fc=#FFD866>%wlp2s0wi%</fc>  |  <fc=#FC9867>%date%</fc>  |  <fc=#FBF1C7><action=/home/anirudh/Downloads/xmenu/xmenu.sh>%uname%</action></fc> "}
+	   				\  <fc=#AB9DF2>%disku%</fc>  |  <fc=#FFD866>%wlp2s0wi%</fc>  |  <fc=#FC9867>%date%</fc>  |  <fc=#FBF1C7><action=/home/anirudh/Downloads/xmenu/xmenu.sh>%uname%</action></fc> "}
