@@ -23,6 +23,9 @@ Plugin 'sainnhe/sonokai'
 " Treesitter
 Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 
+" Color visualiser 
+Plugin 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
 call vundle#end()
 
 
@@ -50,7 +53,6 @@ set nocompatible
 
 filetype plugin indent on
 syntax enable
-let NERDTreeShowHidden=1
 
 
 " ------------------------------ NERDTree settings ------------------------------
@@ -71,6 +73,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Clean'     :'✔︎',
                 \ 'Unknown'   :'?',
                 \ }
+let NERDTreeShowHidden=1
 
 
 
@@ -127,15 +130,27 @@ EOF
 
 
 
+" ------------------------------ Hexokinase settings ----------------------------
+
+autocmd VimEnter * HexokinaseTurnOn
+
+" 'virtual','sign_column','background','backgroundfull','foreground','foregroundfull'
+let g:Hexokinase_highlighters = [ 'backgroundfull' ]
+let g:Hexokinase_refreshEvents = ['InsertLeave']
+
+
 " ------------------------------ Keybindings ------------------------------------
 
+" Switching bewteen NERDTree and main window
 nnoremap <C-n>	: NERDTreeToggle<CR>
 
+" Switching bewteen panes
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Autocomplete brackets
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
