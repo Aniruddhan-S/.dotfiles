@@ -73,108 +73,117 @@ myFocusedBorderColor = "#fc9867"
 --START_KEYS
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-          ---------------custom keybindings---------------
+    -- | XMONAD ACTIONS:
+    -- Quit xmonad                  - Mod + Shift + q
+    [ ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
-    -- Launch browser [brave] - Mod + Shift + b
-    [ ((modm .|. shiftMask, xK_b     ), spawn "brave")
+    -- Recompile and Restart xmonad	- Mod + q
+    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
 
-    -- Launch file manager [pcmanfm] - Mod + Shift + f
+
+
+    -- | LAUNCH APPLICATIONS:
+    -- Launch a terminal [alacritty]    - Mod + Shift + Enter
+    , ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+
+    -- Launch browser [brave]           - Mod + Shift + b
+    , ((modm .|. shiftMask, xK_b     ), spawn "brave")
+
+    -- Launch file manager [pcmanfm]    - Mod + Shift + f
     , ((modm .|. shiftMask, xK_f     ), spawn "pcmanfm")
+
+    -- Launch dmenu                     - Mod + p
+    , ((modm            , xK_p       ), spawn "dmenu_run -c -l 15 -p 'Run: '")
+
+    -- Launch dmenu in config edit mode - Mod + c
+    , ((modm            , xK_c		 ), spawn "sh /home/anirudh/.config/dmenu-scripts/dmenu-conf.sh")
     
-    -- Increase volume - Dedicated Volume Up key
+    
+    
+    -- | MULTIMEDIA KEYS:
+    -- Increase volume              - Dedicated Volume Up key
     , ((0               , 0x1008ff13 ), spawn "sh ~/.config/dunst/volume.sh up")
 
-    -- Decrease volume - Dedicated Volume Down key
+    -- Decrease volume              - Dedicated Volume Down key
     , ((0               , 0x1008ff11 ), spawn "sh ~/.config/dunst/volume.sh down")
 
-    -- Mute audio - Dedicated Mute key
+    -- Mute audio                   - Dedicated Mute key
     , ((0               , 0x1008ff12 ), spawn "sh ~/.config/dunst/volume.sh mute")
 
-    -- Increase display brightness - Dedicated Increase brightness key
+    -- Increase display brightness  - Dedicated Increase brightness key
     , ((0               , 0x1008ff02 ), spawn "xbacklight -inc 10")
 
-    -- Decrease display brightness - Dedicated Decrease brightness key
+    -- Decrease display brightness  - Dedicated Decrease brightness key
     , ((0               , 0x1008ff03 ), spawn "xbacklight -dec 10")
+
+    
+    
+    -- | DISPLAY ACTIONS:
+    -- Lock screen [slock]    - Ctrl + Alt + l
+    , ((controlMask .|. mod1Mask,xK_l), spawn "slock")
 
     -- Screenshot [flameshot] - Mod + Shift + s
     , ((modm .|. shiftMask, xK_s     ), spawn "flameshot gui")
 
-    -- Lock screen [slock] - Ctrl + Alt + l
-    , ((controlMask .|. mod1Mask,xK_l), spawn "slock")
+    -- Show all keybindings   - Mod + Shift + /
+    , ((modm .|. shiftMask, xK_slash ), spawn "sh ~/.xmonad/keybindings.sh")
 
-    -- Launch dmenu - (Mod + p)
-    , ((modm            , xK_p       ), spawn "dmenu_run -c -l 15 -p 'Run: '")
-
-	-- Launch dmenu in config edit mode - Mod + c
-	, ((modm            , xK_c		 ), spawn "sh /home/anirudh/.config/dmenu-scripts/dmenu-conf.sh")
-
-	-- Show all keybindings - Mod + Shift + /
-	, ((modm .|. shiftMask, xK_slash ), spawn "sh ~/.xmonad/keybindings.sh")
-
-          ---------------default keybindings----------------    
-
-    -- Launch a terminal [alacritty] - Mod + Shift + Enter
-    , ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-
-    -- Close focused window - Mod + Shift + c
+    
+    
+    -- | WINDOW ACTIONS:
+    -- Close focused window                                   - Mod + Shift + c
     , ((modm .|. shiftMask, xK_c     ), kill)
 
-    -- Rotate through the available layout algorithms - Mod + Space
+    -- Rotate through the available layout algorithms         - Mod + Space
     , ((modm,               xK_space ), sendMessage NextLayout)
 
-    -- Reset the layouts on the current workspace to default - Mod + Shift + Space
+    -- Reset the layouts on the current workspace to default  - Mod + Shift + Space
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
-    -- Resize viewed windows to the correct size - Mod + n
+    -- Resize viewed windows to the correct size              - Mod + n
     , ((modm,               xK_n     ), refresh)
 
-    -- Move focus to the next window - Mod + Tab
+    -- Move focus to the next window                          - Mod + Tab
     , ((modm,               xK_Tab   ), windows W.focusDown)
 
-    -- Move focus to the next window - Mod + j
+    -- Move focus to the next window                          - Mod + j
     , ((modm,               xK_j     ), windows W.focusDown)
 
-    -- Move focus to the previous window - Mod + k
+    -- Move focus to the previous window                      - Mod + k
     , ((modm,               xK_k     ), windows W.focusUp  )
 
-    -- Move focus to the master window - Mod + m
+    -- Move focus to the master window                        - Mod + m
     , ((modm,               xK_m     ), windows W.focusMaster  )
 
-    -- Swap the focused window and the master window - Mod + Return
+    -- Swap the focused window and the master window          - Mod + Return
     , ((modm,               xK_Return), windows W.swapMaster)
 
-    -- Swap the focused window with the next window - Mod + Shift + j
+    -- Swap the focused window with the next window           - Mod + Shift + j
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
 
-    -- Swap the focused window with the previous window - Mod + Shift + k
+    -- Swap the focused window with the previous window       - Mod + Shift + k
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
 
-    -- Shrink the master area - Mod + h
+    -- Shrink the master area                                 - Mod + h
     , ((modm,               xK_h     ), sendMessage Shrink)
 
-    -- Expand the master area - Mod + l
+    -- Expand the master area                                 - Mod + l
     , ((modm,               xK_l     ), sendMessage Expand)
 
-    -- Push window back into tiling - Mod + t
+    -- Push window back into tiling                           - Mod + t
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
 
-    -- Increment the number of windows in the master area - Mod + ,
+    -- Increment the number of windows in the master area     - Mod + ,
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
 
-    -- Deincrement the number of windows in the master area - Mod + .
+    -- Deincrement the number of windows in the master area   - Mod + .
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
 
-    -- Toggle the status bar gap
-    -- Use this binding with avoidStruts from Hooks.ManageDocks.
-    -- See also the statusBar function from Hooks.DynamicLog.
+    --Toggle the status bar gap
+    --Use this binding with avoidStruts from Hooks.ManageDocks.
+    --See also the statusBar function from Hooks.DynamicLog.
     --
     -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
-
-    -- Quit xmonad - Mod + Shift + q
-    , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-
-    -- Restart xmonad - Mod + q
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
 
     --Run xmessage with a summary of the default keybindings (useful for beginners)
     -- , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
@@ -182,8 +191,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ++
 
     --
-    -- Switch to workspace N - Mod + 1...9
-    -- Move client to workspace N - Mod + Shift + 1...9
+    -- Switch to workspace N                                  - Mod + 1...9
+    -- Move client to workspace N                             - Mod + Shift + 1...9
     --
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
@@ -310,7 +319,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 -- Run xmonad with the settings you specify. No need to modify this.
 
 main = do
-	xmproc <- spawnPipe "xmobar /home/anirudh/.config/xmobar/xmobarrc"
+	xmproc <- spawnPipe "xmobar /home/anirudh/.config/xmobar/xmobarrc0"
 	xmonad $ ewmh def 
 		{
       	-- simple stuff
@@ -337,7 +346,7 @@ main = do
                               , ppVisible = xmobarColor "#403E41" "" . clickable              -- Visible but not current workspace
                               , ppHidden = xmobarColor "#FC9867" "" . wrap "*" "" . clickable -- Hidden workspaces
                               , ppHiddenNoWindows = xmobarColor "#727072" ""  . clickable     -- Hidden workspaces (no windows)
-                              , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
+                              , ppTitle = xmobarColor "#727072" "" . shorten 60               -- Title of active window
                               , ppSep =  "  |  "						                      -- Separator character
                               , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
                               , ppExtras  = [windowCount]                                     -- # of windows current workspace
@@ -345,54 +354,3 @@ main = do
                             },
         startupHook        = myStartupHook
     	}
-
--- | Finally, a copy of the default bindings in simple textual tabular format.
-help :: String
-help = unlines ["The default modifier key is 'alt'. Default keybindings:",
-    "",
-    "-- launching and killing programs",
-    "mod-Shift-Enter  Launch xterminal",
-    "mod-p            Launch dmenu",
-    "mod-Shift-p      Launch gmrun",
-    "mod-Shift-c      Close/kill the focused window",
-    "mod-Space        Rotate through the available layout algorithms",
-    "mod-Shift-Space  Reset the layouts on the current workSpace to default",
-    "mod-n            Resize/refresh viewed windows to the correct size",
-    "",
-    "-- move focus up or down the window stack",
-    "mod-Tab        Move focus to the next window",
-    "mod-Shift-Tab  Move focus to the previous window",
-    "mod-j          Move focus to the next window",
-    "mod-k          Move focus to the previous window",
-    "mod-m          Move focus to the master window",
-    "",
-    "-- modifying the window order",
-    "mod-Return   Swap the focused window and the master window",
-    "mod-Shift-j  Swap the focused window with the next window",
-    "mod-Shift-k  Swap the focused window with the previous window",
-    "",
-    "-- resizing the master/slave ratio",
-    "mod-h  Shrink the master area",
-    "mod-l  Expand the master area",
-    "",
-    "-- floating layer support",
-    "mod-t  Push window back into tiling; unfloat and re-tile it",
-    "",
-    "-- increase or decrease number of windows in the master area",
-    "mod-comma  (mod-,)   Increment the number of windows in the master area",
-    "mod-period (mod-.)   Deincrement the number of windows in the master area",
-    "",
-    "-- quit, or restart",
-    "mod-Shift-q  Quit xmonad",
-    "mod-q        Restart xmonad",
-    "mod-[1..9]   Switch to workSpace N",
-    "",
-    "-- Workspaces & screens",
-    "mod-Shift-[1..9]   Move client to workspace N",
-    "mod-{w,e,r}        Switch to physical/Xinerama screens 1, 2, or 3",
-    "mod-Shift-{w,e,r}  Move client to screen 1, 2, or 3",
-    "",
-    "-- Mouse bindings: default actions bound to mouse events",
-    "mod-button1  Set the window to floating mode and move by dragging",
-    "mod-button2  Raise the window to the top of the stack",
-    "mod-button3  Set the window to floating mode and resize by dragging"]

@@ -10,7 +10,6 @@ bison
 blueman
 bluez
 bluez-utils
-brave-bin
 chrony
 cmatrix
 deepin-wallpapers
@@ -31,16 +30,13 @@ grub
 htop
 imlib2
 libtool
-linux
 linux-firmware
-linux-headers
 linux-lts
 linux-lts-headers
 lxappearance
 m4
 make
 mate-backgrounds
-mirage
 mtools
 neofetch
 neovim
@@ -51,11 +47,9 @@ nodejs-lts-fermium
 npm
 openntpd
 openssh
-otf-font-awesome-5-free
 patch
 pavucontrol
 pcmanfm-gtk3
-picom-jonaburg-git
 pkgconf
 plasma-workspace-wallpapers
 pulseaudio
@@ -71,11 +65,8 @@ texinfo
 tree
 ttf-dejavu
 ttf-font-awesome
-ttf-meslo-nerd-font-powerlevel10k
 vim
-visual-studio-code-bin
 vlc
-vundle
 wget
 which
 wireless_tools
@@ -138,6 +129,5 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 yad
-yay-git
 zsh
 zsh-completions

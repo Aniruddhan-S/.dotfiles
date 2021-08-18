@@ -1,0 +1,45 @@
+Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Font Awesome 5 Free Solid:pixelsize=17"]
+       , borderColor = "#2D2A2E"
+       , border = BottomB
+       , bgColor = "#2D2A2E"
+       , fgColor = "#D4D4D4"
+       , alpha = 225
+    -- , position = Top
+	   , position = Static { xpos = 5, ypos = 5, width = 1910, height = 25 }
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [
+                      Run MultiCpu  [ "--template" 	, "<fc=#AB9DF2><fn=1>\xf2db</fn></fc>  <total>%"] 10
+             
+					, Run Memory    [ "--template" 	, " <fc=#FF6188><fn=1>\xf538</fn></fc>  <usedratio>%"] 10
+					
+					, Run CoreTemp  [ "--template" 	, "<fc=#AB9DF2><fn=1>\xf2cb</fn></fc>  <core0>°C"] 50
+
+					, Run Battery   [ "--template" 	, "<fc=#78DCE8><fn=1>\xf1e6</fn></fc>  <acstatus>"
+									, "--" 			, "-o"	, "<left>%"
+													, "-O"	, "Charging (<left>%)"
+													, "-i"	, "Charged (<left>%)"
+									] 50
+
+					, Run DiskU 	[("/", "<fc=#AB9DF2><fn=1>\xf0a0</fn></fc>  <used> / <size>")] [] 60
+
+					, Run Wireless "wlp2s0" [ "-t", "<fc=#FFD866><fn=1>\xf1eb</fn></fc>  <essid>" ] 10
+										
+					, Run Com "uname" ["-n"] "" 3600
+	                    
+					, Run Date "<fc=#FC9867><fn=1>\xf073</fn></fc>  %a %b %_d %Y  <fc=#FC9867><fn=1>\xf017</fn></fc>  %I:%M:%S%p" "date" 10
+
+					, Run UnsafeStdinReader
+					]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "  %UnsafeStdinReader%  }{  <action=`alacritty -e htop`>%multicpu%  %coretemp%</action>    <action=`alacritty -e htop`>%memory%</action>    %battery%  \
+	   				\  <action=/home/anirudh/.config/xmobar/diskspace.sh>%disku%</action>    <action=`alacritty -e nmtui`>%wlp2s0wi%</action>    %date%  -  <action=/home/anirudh/Downloads/xmenu/xmenu.sh>%uname%</action> "}

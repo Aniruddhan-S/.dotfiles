@@ -5,7 +5,7 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
        , bgColor = "#2D2A2E"
        , fgColor = "#FAFCFA"
        , alpha = 225
-    --    , position = Top
+    -- , position = Top
 	   , position = Static { xpos = 5, ypos = 5, width = 1910, height = 25 }
        , textOffset = -1
        , iconOffset = -1
@@ -48,7 +48,6 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
 									, "--low"      	, "#fb4934"
 									, "--normal"   	, "#fe8019"
 									, "--high"     	, "#A9DC76"
-
 									, "--" 			, "-o"	, "<left>%"
 													, "-O"	, "<fc=#78DCE8>Charging (<left>%)</fc>"
 													, "-i"	, "<fc=#A9DC76>Charged (<left>%)</fc>"
@@ -60,7 +59,7 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
 										
 					, Run Com "uname" ["-n"] "" 3600
 	                    
-					, Run Date "<fn=1>\xf017</fn>  %a %b %_d %Y  %H:%M:%S" "date" 10
+					, Run Date "<fn=1>\xf017</fn>  %a %b %_d %Y  %I:%M:%S%p" "date" 10
 
 					, Run UnsafeStdinReader
 					]

@@ -1,0 +1,8 @@
+brave-bin
+mirage
+otf-font-awesome-5-free
+picom-jonaburg-git
+ttf-meslo-nerd-font-powerlevel10k
+visual-studio-code-bin
+vundle
+yay-git
