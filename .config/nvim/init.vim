@@ -75,7 +75,20 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ }
 let NERDTreeShowHidden=1
 
+"augroup open_toc
+"    au!
+"    au FileType  man  call s:open_toc()
+"augroup END
 
+"fu! s:open_toc() abort
+"    call man#show_toc()
+"    if w:quickfix_title isnot# 'Man TOC'
+"        return
+"    endif
+"    wincmd H
+"    vert resize 40
+"	"let g:loaded_nerdtree_exec_menuitem = 1
+"endfu
 
 " ------------------------------ Lightline settings -----------------------------
 
