@@ -73,14 +73,14 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Clean'     :'✔︎',
                 \ 'Unknown'   :'?',
                 \ }
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden = 1
 
 "augroup open_toc
 "    au!
-"    au FileType  man  call s:open_toc()
+"    au FileType man call s:close_toc()
 "augroup END
 
-"fu! s:open_toc() abort
+"fu! s:close_toc() abort
 "    call man#show_toc()
 "    if w:quickfix_title isnot# 'Man TOC'
 "        return

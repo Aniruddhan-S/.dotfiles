@@ -92,6 +92,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Launch file manager [pcmanfm]    - Mod + Shift + f
     , ((modm .|. shiftMask, xK_f     ), spawn "pcmanfm")
 
+	-- Launch bluetooth manager [blueman]	- Mod + b
+    , ((modm 			, xK_b     ), spawn "blueman-manager")
+
     -- Launch dmenu                     - Mod + p
     , ((modm            , xK_p       ), spawn "dmenu_run -c -l 15 -p 'Run: '")
 
