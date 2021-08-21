@@ -26,6 +26,10 @@ Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Color visualiser 
 Plugin 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
+" Auto completion
+Plugin 'hrsh7th/nvim-compe'
+Plugin 'neovim/nvim-lspconfig'
+
 call vundle#end()
 
 
