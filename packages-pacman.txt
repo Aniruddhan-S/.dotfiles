@@ -5,6 +5,7 @@ archlinux-wallpaper
 autoconf
 automake
 base
+bat
 binutils
 bison
 blueman
@@ -57,11 +58,13 @@ pulseaudio-alsa
 pulseaudio-bluetooth
 pulseaudio-jack
 python-pip
+qalculate-gtk
 reflector
 slock
 speedtest-cli
 sudo
 texinfo
+tokei
 tree
 ttf-dejavu
 ttf-font-awesome

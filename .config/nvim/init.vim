@@ -10,7 +10,6 @@ Plugin 'preservim/nerdtree'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'tpope/vim-commentary'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
-Plugin 'PhilRunninger/nerdtree-buffer-ops'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
@@ -21,7 +20,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'sainnhe/sonokai'
 
 " Treesitter
-Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
+Plugin 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' } 
 
 " Color visualiser 
 Plugin 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
@@ -31,6 +30,7 @@ Plugin 'hrsh7th/nvim-compe'
 Plugin 'neovim/nvim-lspconfig'
 
 call vundle#end()
+
 
 
 
@@ -54,9 +54,22 @@ set noshowmode
 set nohlsearch
 set scrolloff=8
 set nocompatible
+set signcolumn=yes
 
 filetype plugin indent on
 syntax enable
+
+
+
+
+" ------------------------------ Color Scheme -----------------------------------
+
+set termguicolors
+colorscheme sonokai
+
+
+
+" ------------------------------ Intellisense settings --------------------------
 
 
 " ------------------------------ NERDTree settings ------------------------------
@@ -78,21 +91,25 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Unknown'   :'?',
                 \ }
 let NERDTreeShowHidden = 1
+let NERDTreeMinimalUI=1
+" sync open file with NERDTree
+" " Check if NERDTree is open or active
+function! IsNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
 
-"augroup open_toc
-"    au!
-"    au FileType man call s:close_toc()
-"augroup END
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
 
-"fu! s:close_toc() abort
-"    call man#show_toc()
-"    if w:quickfix_title isnot# 'Man TOC'
-"        return
-"    endif
-"    wincmd H
-"    vert resize 40
-"	"let g:loaded_nerdtree_exec_menuitem = 1
-"endfu
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
+
 
 " ------------------------------ Lightline settings -----------------------------
 
@@ -119,13 +136,6 @@ endfu
 
 
 
-" ------------------------------ Color Scheme -----------------------------------
-
-set termguicolors
-colorscheme sonokai
-
-
-
 " ------------------------------ Treesitter settings ----------------------------
 
 lua <<EOF
@@ -133,13 +143,8 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     custom_captures = {
-      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
       ["foo.bar"] = "Identifier",
     },
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
 }
@@ -167,7 +172,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Autocomplete brackets
+" Switching between tabs
+
+" Autocomplete brackets and quotes
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
