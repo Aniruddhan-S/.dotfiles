@@ -25,12 +25,10 @@ Plugin 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 " Color visualiser 
 Plugin 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
-" Auto completion
-Plugin 'hrsh7th/nvim-compe'
-Plugin 'neovim/nvim-lspconfig'
+" Autocompletion of brackets
+Plugin 'jiangmiao/auto-pairs'
 
 call vundle#end()
-
 
 
 
@@ -55,6 +53,8 @@ set nohlsearch
 set scrolloff=8
 set nocompatible
 set signcolumn=yes
+set list 
+set listchars=tab:▸.
 
 filetype plugin indent on
 syntax enable
@@ -69,13 +69,12 @@ colorscheme sonokai
 
 
 
-" ------------------------------ Intellisense settings --------------------------
-
-
 " ------------------------------ NERDTree settings ------------------------------
 
 autocmd VimEnter * NERDTree | wincmd p
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -92,8 +91,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ }
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI=1
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
+
 function! IsNERDTreeOpen()        
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
@@ -109,6 +107,7 @@ endfunction
 
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * call SyncTree()
+
 
 
 " ------------------------------ Lightline settings -----------------------------
@@ -173,11 +172,5 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " Switching between tabs
-
-" Autocomplete brackets and quotes
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap < <><left>
+nnoremap <TAB>		: tabN<CR>
+nnoremap <S-TAB>	: tabp<CR>

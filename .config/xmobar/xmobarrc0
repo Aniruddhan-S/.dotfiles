@@ -42,4 +42,4 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
        , sepChar = "%"
        , alignSep = "}{"
        , template = "  <action=/home/anirudh/Downloads/xmenu/xmenu.sh>%uname%</action>  |  %UnsafeStdinReader%  }{  <action=`alacritty -e htop`>%multicpu%  %coretemp%</action>    <action=`alacritty -e htop`>%memory%</action>    %battery%  \
-	   				\  <action=/home/anirudh/.config/xmobar/diskspace.sh>%disku%</action>    <action=`alacritty -e nmtui`>%wlp2s0wi%</action>    %date% "}
+	   				\  <action=`alacritty -e gdu`>%disku%</action>    <action=`alacritty -e nmtui`>%wlp2s0wi%</action>    %date% "}
