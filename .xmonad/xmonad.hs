@@ -67,7 +67,7 @@ clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#727072"
-myFocusedBorderColor = "#fc9867"
+myFocusedBorderColor = "#AB9DF2"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
