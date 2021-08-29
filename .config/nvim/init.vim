@@ -55,6 +55,7 @@ set nocompatible
 set signcolumn=yes
 set list 
 set listchars=tab:▸.
+set clipboard+=unnamed,unnamedplus
 
 filetype plugin indent on
 syntax enable
