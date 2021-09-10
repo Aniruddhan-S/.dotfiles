@@ -28,6 +28,9 @@ Plugin 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Autocompletion of brackets
 Plugin 'jiangmiao/auto-pairs'
 
+" Markdown Preview
+Plugin 'iamcco/markdown-preview.nvim' 
+
 call vundle#end()
 
 
@@ -164,7 +167,7 @@ let g:Hexokinase_refreshEvents = ['InsertLeave']
 " ------------------------------ Keybindings ------------------------------------
 
 " Switching bewteen NERDTree and main window
-nnoremap <C-n>	: NERDTreeToggle<CR>
+nnoremap <C-n>		: NERDTreeToggle<CR>
 
 " Switching bewteen panes
 map <C-h> <C-w>h
@@ -175,3 +178,6 @@ map <C-l> <C-w>l
 " Switching between tabs
 nnoremap <TAB>		: tabN<CR>
 nnoremap <S-TAB>	: tabp<CR>
+
+" Open Markdown Preview
+nnoremap <C-m>		: MarkdownPreview<CR>
