@@ -15,7 +15,6 @@ chrony
 cmatrix
 deepin-wallpapers
 dmenu
-doge
 dosfstools
 dunst
 efibootmgr
@@ -69,7 +68,6 @@ tokei
 tree
 ttf-dejavu
 ttf-font-awesome
-vim
 vlc
 wget
 which
