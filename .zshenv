@@ -3,8 +3,6 @@ export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="brave"
-export WM="xmonad"
-export IMAGE="mirage"
 
 # pfetch
 # Possibile values: ascii title os host kernel uptime shell editor de wm pkgs memory palette 

@@ -1,3 +1,4 @@
+acpi
 alacritty
 alsa-utils
 arc-gtk-theme
@@ -51,7 +52,6 @@ patch
 pavucontrol
 pcmanfm-gtk3
 pkgconf
-plasma-workspace-wallpapers
 pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
@@ -68,6 +68,7 @@ tokei
 tree
 ttf-dejavu
 ttf-font-awesome
+vim
 vlc
 wget
 which
@@ -81,9 +82,7 @@ xf86-video-ati
 xf86-video-intel
 xf86-video-nouveau
 xf86-video-vesa
-xmobar
-xmonad
-xmonad-contrib
+xmonad-utils
 xorg-bdftopcf
 xorg-docs
 xorg-font-util
@@ -131,6 +130,7 @@ xorg-xwayland
 xorg-xwd
 xorg-xwininfo
 xorg-xwud
+xterm
 yad
 zsh
 zsh-completions

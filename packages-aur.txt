@@ -1,4 +1,5 @@
 brave-bin
+dwm
 gdu-bin
 mirage
 otf-font-awesome-5-free

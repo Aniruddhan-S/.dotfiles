@@ -1,4 +1,4 @@
-" ------------------------------ Plugins ----------------------------------------
+"{{{ ------------------------------ Plugins ----------------------------------------
 
 call vundle#begin('/home/anirudh/.config/nvim/plugged')
 
@@ -17,7 +17,8 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 
 " Themes
-Plugin 'sainnhe/sonokai'
+" Plugin 'sainnhe/sonokai'
+Plugin 'joshdick/onedark.vim'
 
 " Treesitter
 Plugin 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' } 
@@ -33,9 +34,9 @@ Plugin 'iamcco/markdown-preview.nvim'
 
 call vundle#end()
 
+"}}}
 
-
-" ------------------------------ General settings -------------------------------
+"{{{ ------------------------------ General settings -------------------------------
 
 set tabstop=4
 set number
@@ -59,21 +60,23 @@ set signcolumn=yes
 set list 
 set listchars=tab:▸.
 set clipboard+=unnamed,unnamedplus
+set foldenable
+set foldmethod=marker
+set foldmarker={{{,}}}
 
 filetype plugin indent on
 syntax enable
 
+"}}}
 
-
-
-" ------------------------------ Color Scheme -----------------------------------
+"{{{ ------------------------------ Color Scheme -----------------------------------
 
 set termguicolors
-colorscheme sonokai
+colorscheme onedark
 
+"}}}
 
-
-" ------------------------------ NERDTree settings ------------------------------
+"{{{ ------------------------------ NERDTree settings ------------------------------
 
 autocmd VimEnter * NERDTree | wincmd p
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -112,13 +115,13 @@ endfunction
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * call SyncTree()
 
+"}}}
 
-
-" ------------------------------ Lightline settings -----------------------------
+"{{{ ------------------------------ Lightline settings -----------------------------
 
 autocmd VimEnter * call lightline#update()
 let g:lightline = {
-      					\ 'colorscheme': 'sonokai',
+      					\ 'colorscheme': 'onedark',
       					\ 'active': {
       					\   'left': [ [ 'mode', 'paste' ],
       					\             [ 'readonly', 'filename', 'modified' ] ]
@@ -137,9 +140,9 @@ fu s:disable_lightline_on_nerdtree() abort
     call timer_start(0, {-> nerdtree_winnr && setwinvar(nerdtree_winnr, '&stl', '%#Normal#')})
 endfu
 
+"}}}
 
-
-" ------------------------------ Treesitter settings ----------------------------
+"{{{ ------------------------------ Treesitter settings ----------------------------
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -153,9 +156,9 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+"}}}
 
-
-" ------------------------------ Hexokinase settings ----------------------------
+"{{{ ------------------------------ Hexokinase settings ----------------------------
 
 autocmd VimEnter * HexokinaseTurnOn
 
@@ -163,8 +166,9 @@ autocmd VimEnter * HexokinaseTurnOn
 let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 let g:Hexokinase_refreshEvents = ['InsertLeave']
 
+"}}}
 
-" ------------------------------ Keybindings ------------------------------------
+"{{{ ------------------------------ Keybindings ------------------------------------
 
 " Switching bewteen NERDTree and main window
 nnoremap <C-n>		: NERDTreeToggle<CR>
@@ -181,3 +185,5 @@ nnoremap <S-TAB>	: tabp<CR>
 
 " Open Markdown Preview
 nnoremap <C-m>		: MarkdownPreview<CR>
+
+"}}}

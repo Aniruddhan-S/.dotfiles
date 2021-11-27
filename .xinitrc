@@ -1,1 +1,2 @@
-exec dbus-launch xmonad
+nitrogen --restore &
+exec dbus-launch dwm
