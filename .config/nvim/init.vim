@@ -63,6 +63,8 @@ set clipboard+=unnamed,unnamedplus
 set foldenable
 set foldmethod=marker
 set foldmarker={{{,}}}
+set splitright
+set splitbelow
 
 filetype plugin indent on
 syntax enable
@@ -170,8 +172,8 @@ let g:Hexokinase_refreshEvents = ['InsertLeave']
 
 "{{{ ------------------------------ Keybindings ------------------------------------
 
-" Switching bewteen NERDTree and main window
-nnoremap <C-n>		: NERDTreeToggle<CR>
+" Leader key
+let mapleader=" "
 
 " Switching bewteen panes
 map <C-h> <C-w>h
@@ -185,5 +187,12 @@ nnoremap <S-TAB>	: tabp<CR>
 
 " Open Markdown Preview
 nnoremap <C-m>		: MarkdownPreview<CR>
+
+" source file without leaving vim 
+nnoremap <leader>s	: source ~/.config/nvim/init.vim<CR>
+
+" Switching bewteen NERDTree and main window
+nnoremap <silent><C-n>		: NERDTreeToggle<CR>
+
 
 "}}}

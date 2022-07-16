@@ -3,14 +3,15 @@ env:
 
 window:
   padding:
-   x: 10
-   y: 10
+   x: 20
+   y: 20
 
   title: Alacritty
 
   decorations: full
 
 font:
+  family: Hack Nerd Font Mono
   size: 9
 
 # One Dark
